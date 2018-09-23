@@ -1,0 +1,75 @@
+/* **********************************************************************************************/
+/************************************ IN OUR JSON FILE: *****************************************/
+  /* we write our own script:  */
+  /* "compile:sass": "node-sass sass/main.scss css/style.css -w"*/
+   /* node-sass is the name of the package*/
+  /* our sass file (main.scss) is the input file*/
+  /* our css file (style.css) file is the output file*/
+  /* we add -w at the end (means WATCH) so that we don't need to compile the code everytime we make a change*/
+  /* First we had the script "compile:sass" but now we change it for "watch:sass", because later we will add a script that will compile the sass but without watching it*/
+  /* A los "scripts" también se las llama TASKS*/
+  /* To concatenate multiple css files, we install an npm package "npm install concat --save-dev"*/
+
+/* **********************************************************************************************/
+
+*, 
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: inherit;
+}
+
+/* ************************* A NOTE ABOUT PIXELS ******************************************************/
+/* 
+Very bad practice to set up the font-size in px.
+We know the default size of the browsers is usually 16px
+So, in percentage, 10px would be 62.5%
+We do 10px in order to make our life easier when calculate the rem equivalent.
+i.e. 62.5% = 10px = 1rem
+*/
+/* ***************************************************************************************************/
+
+/* The order of the media queries is extremely important!!*/
+/* Always the larger ones before the smaller ones*/
+html {
+	font-size: 62.5%;	/* this defines what 1rem is*/
+
+	@include responsivedesign(big-desktop) {
+		font-size: 75%; 	/*1rem = 12px, 12/16 = 75%*/
+	}
+	
+	@include responsivedesign(tab-land) {	/* width < 1200?*/
+		font-size: 56.25%; /*1rem = 9px, 9/16 = 56.25%	*/
+	}
+
+	@include responsivedesign(tab-port) {	/* width < 900?*/
+		font-size: 50%;	/*1rem = 8px, 8/16 = 50%*/
+	}
+
+}
+
+body {
+	box-sizing: border-box;
+	padding: 3rem;
+
+	@include responsivedesign(tab-port) {
+		padding: 0;
+	}
+}
+
+/* ********************** NOTA SOBRE LA RUTA DE UN ARCHIVO **********************************************/
+/* Cuando insertamos una foto, por ej. , tenemos que tener en cuenta que, aunque estemos escribiendo en Sass, */
+/* nuestro código se va a compilar en el archivo style.css. */
+/* Por tanto, la ruta de nuestro archivo empieza ahí. Si desde ahí queremos subir un nivel, pondríamos dos puntos, así: ../*/
+/* ***************************************************************************************************/
+
+/* We can personalise things like the text when the user selects it: */
+::-moz-selection {
+	background-color: $color-primary;
+	color: $color-white;
+}
+::selection {
+	background-color: $color-primary;
+	color: $color-white;
+}

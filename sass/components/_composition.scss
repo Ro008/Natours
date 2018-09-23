@@ -1,0 +1,70 @@
+.composition {
+	position: relative;
+
+	&__photo {
+		width: 55%;  /* width always in %, because of responsive design. It will nicely scale with the viewport*/
+		box-shadow: 0 1.5rem 4rem rgba($color-black, 0.4);
+		border-radius: $border-radius-sutile;
+		position: absolute;
+		z-index: 10;
+		transition: all 0.2s;
+		outline-offset: 2rem;
+
+		@include responsivedesign(tab-port) {
+			float: left;
+			position: relative;
+			width: 33.333333%;
+			box-shadow: 0 1.5rem 3rem rgba($color-black, 0.2);
+		}
+
+		&--p1 {
+			left: 0;
+			top: -2rem;
+
+			@include responsivedesign(tab-port) {
+				top: 0;
+				-webkit-transform: scale(1.2);
+				        transform: scale(1.2);
+			}
+		}
+
+		&--p2 {
+			right: 0;
+			top: 2rem;
+
+			@include responsivedesign(tab-port) {
+				top: -1rem;
+				-webkit-transform: scale(1.3);
+				        transform: scale(1.3);
+				z-index: 15;
+			}
+		}
+
+		&--p3 {
+			left: 20%;  /* for responsive design*/
+			top: 10rem;
+
+			@include responsivedesign(tab-port) {
+				top: 1rem;
+				left: 0;
+				-webkit-transform: scale(1.1);
+				        transform: scale(1.1);
+			}
+		}
+
+		&:hover {
+			-webkit-transform: scale(1.05) translateY(-0.5rem);
+			box-shadow: $box-shadow-big;
+			z-index: 20;
+			outline: 1.5rem solid $color-primary;
+		}
+		
+
+	}
+
+	/* when we hover the composition, then select the composition photo which is not hovered.*/
+	&:hover &__photo:not(:hover) {
+		-webkit-transform: scale(0.95);
+	}
+
+ }

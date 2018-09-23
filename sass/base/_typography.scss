@@ -1,0 +1,88 @@
+body {
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	font-size: $default-font-size;
+	line-height: 1.7;
+	color: $color-grey-dark;
+
+}
+
+.heading-primary {
+	color: $color-white;
+	text-transform: uppercase;
+	-webkit-backface-visibility: hidden;
+	        backface-visibility: hidden;
+	margin-bottom: 6rem;
+	
+	&--main {
+		display: block;
+		font-size: 6rem;
+		font-weight: 400;
+		letter-spacing: 3.5rem;
+		-webkit-animation: moveInLeft 1s ease-out;
+		        animation: moveInLeft 1s ease-out;
+
+		@include responsivedesign(phone) {
+			letter-spacing: 1rem;
+			font-size: 5rem;
+		
+		}
+
+	}
+
+	&--sub {
+		display: block;
+		font-weight: 700;
+		font-size: 2rem;
+		letter-spacing: 1.75rem;
+		-webkit-animation: moveInRight 1s ease-out;
+		        animation: moveInRight 1s ease-out;
+
+		@include responsivedesign(phone) {
+			letter-spacing: 0.5rem;
+			font-size: 2rem;
+		
+		}
+	}
+}
+
+.heading-secondary {
+	font-size: 3.5rem;
+	text-transform: uppercase;
+	font-weight: 700;
+	display: inline-block;
+	color: transparent;
+	letter-spacing: 0.2rem;
+	transition: all 0.2s;
+	color: transparent;
+ 	-webkit-background-clip: text;
+	background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+
+	@include responsivedesign(tab-port) {
+			font-size: 3rem;
+		}
+
+	@include responsivedesign(phone) {
+			font-size: 2.5rem;
+		
+		}
+
+	&:hover{
+		-webkit-transform: skewY(1deg) skewX(5deg) scale(1.1);
+		text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+	}
+}
+
+.heading-tertiary {
+	font-size: $default-font-size;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.paragraph {
+	font-size: $default-font-size;
+
+	&:not(:last-child) {
+		margin-bottom: 3rem;
+	}
+}

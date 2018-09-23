@@ -1,0 +1,117 @@
+.form {
+
+	&__group:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+
+	&__input {
+		font-size: 1.5rem;
+		font-family: inherit;
+		padding: 1.5rem 2rem;
+		border-radius: $border-radius-sutile;
+		background-color: rgba($color-white, 0.5);
+		border: none;
+		border-bottom: 3px solid transparent;
+		width: 90%;
+		display: block;
+		color: inherit;
+		transition: all 0.3s;
+
+		@include responsivedesign(tab-port) {
+			width: 100%;
+		}
+
+		&:focus {
+			outline: none;
+			box-shadow: $box-shadow-xsmall;
+			border-bottom: 3px solid $color-primary;
+		}
+
+		/* When we have an INVALID, FOCUSED element, then we apply:*/
+		&:focus:invalid {
+			border-bottom: 3px solid $color-secondary-dark;
+
+		} 
+
+		&::-webkit-input-placeholder {
+			color: $color-grey;
+
+		}
+
+	}
+
+	&__label {
+		font-size: 1.2rem;
+		font-weight: 700;
+		margin-left: 2rem;
+		margin-top: 0.7rem;
+		display: block;
+		transition: all 0.3s;
+		
+
+	}
+	
+	/* Como INPUT y LABEL son siblings, usamos el + SELECTOR*/
+	/* Cuando el PLACEHOLDER está visible (o sea, su estado inicial antes de escribir), aplicamos estas propiedades:*/
+	&__input:placeholder-shown + &__label {
+		/* Usamos VISIBILITY y OPACITY porque no podemos animar la VISIBILITY*/
+		opacity: 0;
+		visibility: hidden;
+		-webkit-transform: translateY(4rem);
+		        transform: translateY(4rem);
+	
+	}
+
+	&__radio-group {
+		width: 49%;
+		display: inline-block;
+
+		@include responsivedesign(tab-port) {
+			width: 100%;
+			margin-bottom: 2rem;
+		}
+	}
+
+	&__radio-input {
+		display: none;
+	}
+
+	&__radio-label {
+		font-size: $default-font-size;
+		cursor: pointer;
+		position: relative;
+		padding-left: 4.5rem;
+	}
+
+	&__radio-button {
+		height: 3rem;
+		width: 3rem;
+		border: 5px solid $color-primary;
+		border-radius: 50%;
+		display: inline-block;
+		position: absolute;
+		left: 0;
+		top: -0.5rem; 
+
+		&::after {
+			/* All PSEUDOELEMENTS need a CONTENT and a DISPLAY propert*/
+			content: "";
+			display: block;
+			height: 1.3rem;
+			width: 1.3rem;
+			border-radius: 50%;
+			@include hor-ver-centered;
+			background-color: $color-primary;
+			opacity: 0;
+			transition: all 0.2s;
+
+		}
+	}
+	
+	/* We could also use the ~ selector*/
+	&__radio-input:checked + &__radio-label &__radio-button::after {
+		opacity: 1;
+
+	}
+
+}

@@ -1,0 +1,198 @@
+.navigation {
+
+	&__checkbox {
+		display: none;
+	}
+
+	&__button {
+		background-color: $color-white;
+		height: 7rem;
+		width: 7rem;
+		border-radius: 50%;
+		position: fixed;
+		top: 6rem;
+		right: 6rem;
+		z-index: 200;
+		box-shadow: $box-shadow-xsmall;
+		text-align: center;
+		cursor: pointer;
+
+		@include responsivedesign(tab-port) {
+			top: 4rem;
+			right: 4rem;
+		}
+
+		@include responsivedesign(phone) {
+			top: 3rem;
+			right: 3rem;
+		}
+	}
+
+	&__background {
+		height: 6rem;
+		width: 6rem;
+		border-radius: 50%;
+		position: fixed;
+		top: 6.5rem;
+		right: 6.5rem;
+		background-image: radial-gradient($color-primary-light, $color-primary-dark);
+		z-index: 100;
+		transition: all 0.7s cubic-bezier(0.86, 0, 0.07, 1);
+
+		@include responsivedesign(tab-port) {
+			top: 4.5rem;
+			right: 4.5rem;
+		}
+
+		@include responsivedesign(phone) {
+			top: 3.5rem;
+			right: 3.5rem;
+		}
+	
+
+	}
+
+	&__nav {
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 150;
+		opacity: 0; /* With only OPACITY, the elements would still be there, that's why we need the WIDTH: 0*/
+		width: 0;
+		transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		-webkit-animation-delay: 0.2s;
+		        animation-delay: 0.2s;
+
+		
+	}
+
+	&__list {
+		@include hor-ver-centered;
+		list-style: none;
+		text-align: center;
+		width: 100%;
+
+	}
+
+	&__item {
+		margin: 1rem;
+
+	}
+
+	&__link {
+
+		&:link,
+		&:visited {
+			font-size: 3rem;
+			font-weight: 300;
+			color: $color-white;
+			text-decoration: none;
+			text-transform: uppercase;
+			background-image: linear-gradient(120deg,
+				                              transparent 0%,
+				                              transparent 50%,
+				                              $color-white 50%);
+			padding: 1rem 2rem;
+			background-size: 220%;
+			transition: all 0.4s;
+			display: inline-block;
+			-webkit-backface-visibility: hidden;
+			        backface-visibility: hidden;
+			
+		}
+
+		&:hover, 
+		&:active {
+			background-position: 100%;
+			color: $color-primary;
+			-webkit-transform: translateX(1rem);
+			        transform: translateX(1rem);
+			-webkit-backface-visibility: hidden;
+			        backface-visibility: hidden;
+		}
+
+	}
+	
+	/* FUNCTIONALITY*/
+	/* Estamos indicando que, cuando la clase CHECKBOX esté pulsada (vamos, cuando se haga clic), que se apliquen
+	// las siguientes propiedades a su SIBLING,*/
+	/* que es la clase BACKGROUND*/
+	&__checkbox:checked ~ &__background {
+         transform: scale(80);
+		-webkit-transform: scale(80);
+
+	}
+
+	&__checkbox:checked ~ &__nav {
+		opacity: 1;
+		width: 100%;
+	}
+
+	/* ICON*/
+	&__icon {
+		position: relative;
+		margin-top: 3.5rem;
+
+		&,
+		&::before,
+		&::after {
+			width: 3rem;
+			height: 2px;
+			background-color: $color-grey-dark-2;
+			display: inline-block;
+
+
+		}
+
+		&::before, 
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			transition: all 0.2s;
+		}
+
+		&::before {
+			top: 0.8rem;
+	
+		}
+
+		&::after {
+			top: -0.8rem;
+
+		}
+
+
+	}
+
+	&__button:hover &__icon::before {
+		top: 1rem;
+
+	}
+
+	&__button:hover &__icon::after {
+		top: -1rem;
+		
+	}
+	
+	/* When the CHECKBOX is checked, then we select its brother (BUTTON) and then we select its child (ICON)*/
+	&__checkbox:checked + &__button &__icon {
+		background-color: transparent;
+
+	}
+
+	&__checkbox:checked + &__button &__icon::before {
+		-webkit-transform: rotate(135deg);
+		        transform: rotate(135deg);
+		        top: 0;
+	}
+
+	&__checkbox:checked + &__button &__icon::after {
+		-webkit-transform: rotate(-135deg);
+		        transform: rotate(-135deg);
+		        top: 0;
+
+	}
+
+}

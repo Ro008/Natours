@@ -1,0 +1,88 @@
+.footer {
+	background-color: $color-grey-dark-2;
+	padding: 10rem 0;
+	font-size: 1.4rem;
+	color: $color-grey-light-3;
+
+	@include responsivedesign(tab-port) {
+			padding: 8rem 0;
+		}
+
+	&__logo-box {
+		text-align: center;
+		margin-bottom: 8rem;
+		position: relative;
+		left: 2rem;
+		-webkit-transform: translateX(-4.5%);
+
+		@include responsivedesign(tab-port) {
+			margin-bottom: 6rem;
+		}
+	}
+
+	&__logo {
+		width: 15rem;
+		height: auto;
+		
+	}
+
+	&__navigation {
+		border-top: 1px solid $color-grey-light-3;
+		padding-top: 2rem;
+		display: inline-block;
+
+		@include responsivedesign(tab-port) {
+			width: 100%;
+			text-align: center;
+		}
+
+	}
+
+	&__list {
+		list-style: none;
+
+	}
+
+	&__item {
+		display: inline-block;
+
+		&:not(:last-child) {
+			margin-right: 1.5rem;
+		}
+
+	}
+
+	&__link {
+		&:link, 
+		&:visited {
+			color: $color-grey-light-1;
+			background-color: $color-grey-dark-2;
+			text-decoration: none;
+			display: inline-block;
+			transition: all 0.2s;
+		}
+
+		&:hover, 
+		&:active {
+			color: $color-primary;
+			box-shadow: $box-shadow-xsmall;
+			-webkit-transform: rotate(5deg) scale(1.1);
+			        transform: rotate(5deg) scale(1.1);
+
+		}
+
+	}
+
+	&__copyright {
+		border-top: 1px solid $color-grey-light-3;
+		padding-top: 2rem;
+		width: 80%;
+		float: right;
+
+		@include responsivedesign(tab-port) {
+			width: 100%;
+			float: none;
+		}
+
+	}
+}
